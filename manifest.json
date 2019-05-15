@@ -9,8 +9,7 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "https://www.ubereats.com/en-GB/*"
       ],
       "js": ["content.js"],
       "run_at": "document_idle",
