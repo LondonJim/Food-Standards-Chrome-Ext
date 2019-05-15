@@ -1,6 +1,6 @@
 {
-  "name": "food-safety",
-  "version": "1.0.0",
+  "name": "food-safety-checker",
+  "version": "0.1.0",
   "description": "",
   "main": "content.js",
   "dependencies": {},
