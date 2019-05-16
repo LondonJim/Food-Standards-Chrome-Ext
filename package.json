@@ -20,7 +20,7 @@
   },
   "scripts": {
     "test": "nyc babel-node test/unit/runTests.js && npx codeceptjs run --steps",
-    "test:unit:integration": "nyc babel-node test/unit/runTests.js",
+    "test:unit:integration": "nyc babel-node test/runTests.js",
     "test:e2e": "npx codeceptjs run --steps"
   },
   "repository": {
