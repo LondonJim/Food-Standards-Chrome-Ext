@@ -1,42 +1,33 @@
 class UserLocation {
 
   constructor() {
-    this.coordinates = {}
-    this.errorMessage = ""
+    this.returnedData = {}
   }
 
-  getLocation = () => {
-   navigator.geolocation.getCurrentPosition(this.setPosition, this.showError)
+  setLocation = () => {
+   navigator.geolocation.getCurrentPosition(this._setPosition, this._showError)
+   return this.returnedData
   }
 
-  setPosition = (position) => {
-    this.coordinates = {'latitude': position.coords.latitude,
-                        'longitude': position.coords.longitude}
+  _setPosition = (position) => {
+    this.returnedData = {'latitude': position.coords.latitude,
+                         'longitude': position.coords.longitude}
   }
 
-  showError = (error) => {
+  _showError = (error) => {
     switch(error.code) {
       case error.PERMISSION_DENIED:
-        this.errorMessage = "User denied the request for Geolocation."
+        this.returnedData = { error: "User denied the request for Geolocation." }
         break;
       case error.POSITION_UNAVAILABLE:
-        this.errorMessage = "Location information is unavailable."
+        this.returnedData = { error: "Location information is unavailable." }
         break;
       case error.TIMEOUT:
-        this.errorMessage = "The request to get user location timed out."
+        this.returnedData = { error: "The request to get user location timed out." }
         break;
       case error.UNKNOWN_ERROR:
-        this.errorMessage = "An unknown error occurred."
+        this.returnedData = { error: "An unknown error occurred." }
         break;
     }
   }
-
-  getCoordinates = () => {
-    return this.coordinates
-  }
-
-  getErrorMessage = () => {
-    return this.errorMessage
-  }
-
 }
