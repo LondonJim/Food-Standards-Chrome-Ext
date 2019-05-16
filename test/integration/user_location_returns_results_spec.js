@@ -13,10 +13,10 @@ describe('setLocation in .UserLocation calling', () => {
   })
 
   describe('_setLocation returning results', () => {
+    let position = { coords: { latitude: 32, longitude: -96 } }
     it('should return results', () => {
       spyOn(navigator.geolocation,"getCurrentPosition")
         .and.callFake(function() {
-          let position = { coords: { latitude: 32, longitude: -96 } };
           arguments[0](position)
         })
       userLocation = new UserLocation()
