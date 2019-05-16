@@ -26,60 +26,59 @@ describe('setLocation in .UserLocation calling', () => {
           expect(result).toEqual({ 'latitude': 32, 'longitude': -96 })
         })
     })
+  })
 
-    // Second describe used below because I needed to reset the spyOn but
-    // jasmine doesn't let you in the same describe block
-    describe('_showError return results', () => {
+  describe('_showError return results', () => {
 
-      it('should return PERMISSION_DENIED error', () => {
-        spyOn(navigator.geolocation,"getCurrentPosition")
-          .and.callFake(function() {
-            let error = { code: true, PERMISSION_DENIED: true };
-            arguments[1](error)
-          })
-        userLocation = new UserLocation()
+    it('should return PERMISSION_DENIED error', () => {
+      spyOn(navigator.geolocation,"getCurrentPosition")
+        .and.callFake(function() {
+          let error = { code: true, PERMISSION_DENIED: true };
+          arguments[1](error)
+        })
+      userLocation = new UserLocation()
 
-        userLocation.setLocation()
-          .then((result) => {
-            expect(result).toEqual({ error: "User denied the request for Geolocation." })
-          })
-      })
+      userLocation.setLocation()
+        .then((result) => {
+          expect(result).toEqual({ error: "User denied the request for Geolocation." })
+        })
+    })
 
-      it('should return POSITION_UNAVAILABLE error', () => {
-        let error = { code: true, POSITION_UNAVAILABLE: true }
-        spyOn(navigator.geolocation,"getCurrentPosition")
-          .and.callFake(function() { arguments[1](error) })
-        userLocation = new UserLocation()
+    it('should return POSITION_UNAVAILABLE error', () => {
+      let error = { code: true, POSITION_UNAVAILABLE: true }
+      spyOn(navigator.geolocation,"getCurrentPosition")
+        .and.callFake(function() { arguments[1](error) })
+      userLocation = new UserLocation()
 
-        userLocation.setLocation()
-          .then((result) => {
-            expect(result).toEqual({ error: "Location information is unavailable." })
-          })
-      })
+      userLocation.setLocation()
+        .then((result) => {
+          expect(result).toEqual({ error: "Location information is unavailable." })
+        })
+    })
 
-      it('should return TIMEOUT error', () => {
-        let error = { code: true, TIMEOUT: true }
-        spyOn(navigator.geolocation,"getCurrentPosition")
-          .and.callFake(function() { arguments[1](error) })
-        userLocation = new UserLocation()
+    it('should return TIMEOUT error', () => {
+      let error = { code: true, TIMEOUT: true }
+      spyOn(navigator.geolocation,"getCurrentPosition")
+        .and.callFake(function() { arguments[1](error) })
+      userLocation = new UserLocation()
 
-        userLocation.setLocation()
-          .then((result) => {
-            expect(result).toEqual({ error: "The request to get user location timed out." })
-          })
-      })
+      userLocation.setLocation()
+        .then((result) => {
+          expect(result).toEqual({ error: "The request to get user location timed out." })
+        })
+    })
 
-      it('should return UNKNOWN_ERROR error', () => {
-        let error = { code: true, UNKNOWN_ERROR: true }
-        spyOn(navigator.geolocation,"getCurrentPosition")
-          .and.callFake(function() { arguments[1](error) })
-        userLocation = new UserLocation()
+    it('should return UNKNOWN_ERROR error', () => {
+      let error = { code: true, UNKNOWN_ERROR: true }
+      spyOn(navigator.geolocation,"getCurrentPosition")
+        .and.callFake(function() { arguments[1](error) })
+      userLocation = new UserLocation()
 
-        userLocation.setLocation()
-          .then((result) => {
-            expect(result).toEqual({ error: "An unknown error occurred." })
-          })
-      })
+      userLocation.setLocation()
+        .then((result) => {
+          expect(result).toEqual({ error: "An unknown error occurred." })
+        })
     })
   })
+
 })
