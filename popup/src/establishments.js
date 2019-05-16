@@ -16,7 +16,7 @@ class Establishments {
     return fetch(this.url, {
       headers: { 'x-api-version': '2' }
     })
-    .then(results => this.establishmentInfo = results.json())
+    .then(results => results.json())
   }
 
   _createUrl = () => {

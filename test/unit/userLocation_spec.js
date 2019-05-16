@@ -8,14 +8,15 @@ UserLocation = userLocation.__get__('UserLocation')
 
 describe('#setLocation', () => {
 
-  beforeEach(() => {
-    navigator = new MockNavigator
-  })
-
   it('should return results', () => {
-    spyOn(navigator.geolocation,"getCurrentPosition").and.stub()
+    navigator = new MockNavigator
+    const promiseData = {test: "test"}
+    spyOn(navigator.geolocation,"getCurrentPosition").and.returnValue(Promise.resolve(promiseData))
     userLocation = new UserLocation()
-    
-    expect(userLocation.setLocation()).toEqual({})
+
+    userLocation.setLocation()
+      .then((result) => {
+        expect(result).toEqual({test: "test"})
+      })
   })
 })

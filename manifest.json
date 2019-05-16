@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "permissions": [
     "activeTab",
-    "geolocation"
+    "geolocation",
+    "storage"
   ],
 
   "content_scripts": [

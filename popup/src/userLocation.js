@@ -5,29 +5,35 @@ class UserLocation {
   }
 
   setLocation = () => {
-   navigator.geolocation.getCurrentPosition(this._setPosition, this._showError)
-   return this.returnedData
+    let that = this
+    let promise = new Promise(function(resolve, reject) {
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          resolve( that._setPosition(position) )
+        },
+        function(error) {
+          resolve( that._showError(error) )
+        },
+      )
+    })
+    return promise
   }
 
   _setPosition = (position) => {
-    this.returnedData = {'latitude': position.coords.latitude,
-                         'longitude': position.coords.longitude}
+    return {'latitude': position.coords.latitude,
+            'longitude': position.coords.longitude}
   }
 
   _showError = (error) => {
     switch(error.code) {
       case error.PERMISSION_DENIED:
-        this.returnedData = { error: "User denied the request for Geolocation." }
-        break;
+        return { error: "User denied the request for Geolocation." }
       case error.POSITION_UNAVAILABLE:
-        this.returnedData = { error: "Location information is unavailable." }
-        break;
+        return { error: "Location information is unavailable." }
       case error.TIMEOUT:
-        this.returnedData = { error: "The request to get user location timed out." }
-        break;
+        return { error: "The request to get user location timed out." }
       case error.UNKNOWN_ERROR:
-        this.returnedData = { error: "An unknown error occurred." }
-        break;
+        return { error: "An unknown error occurred." }
     }
   }
 }
