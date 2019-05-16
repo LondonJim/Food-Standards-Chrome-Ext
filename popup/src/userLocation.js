@@ -1,4 +1,4 @@
-class GetUserLocation {
+class UserLocation {
 
   constructor() {
     this.coordinates = {}

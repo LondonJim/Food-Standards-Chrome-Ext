@@ -4,18 +4,18 @@ fetch = require('node-fetch')
 
 fetchMock.get('*', {establishments: 'data'});
 
-let getRestaurantInfo = rewire('../../popup/src/getRestaurantInfo.js')
+let establishments = rewire('../../popup/src/establishments.js')
 
-GetRestaurantInfo = getRestaurantInfo.__get__('GetRestaurantInfo')
+Establishments = establishments.__get__('Establishments')
 
 describe('.GetRestaurantInfo', () => {
 
 
-  describe('#restaurantData', () => {
+  describe('#establishmentData', () => {
 
     it('should return results', (done) => {
-      getRestaurantInfo = new GetRestaurantInfo('https://test-url/','')
-      getRestaurantInfo.restaurantData().then(function (results) {
+      establishments = new Establishments('https://test-url/','')
+      establishments.establishmentData().then(function (results) {
         expect(results).toEqual({establishments: 'data'})
         done()
       })
