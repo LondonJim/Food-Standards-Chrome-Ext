@@ -31,9 +31,9 @@ describe('setLocation in .UserLocation calling', () => {
   describe('_showError return results', () => {
 
     it('should return PERMISSION_DENIED error', () => {
+      let error = { code: true, PERMISSION_DENIED: true }
       spyOn(navigator.geolocation,"getCurrentPosition")
         .and.callFake(function() {
-          let error = { code: true, PERMISSION_DENIED: true };
           arguments[1](error)
         })
       userLocation = new UserLocation()
