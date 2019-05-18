@@ -9,7 +9,8 @@ class Controller {
     	if (!!message.name) {
         console.log(message)
         this.establishmentData = message
-        EstablishmentParse.parse(this.establishmentData)
+        establishmentParse = new EstablishmentParse(this.establishmentData)
+        establishmentParse.parse()
           .then(function(result) {
             this.establishmentData = result
             this.getEstablishmentData()
