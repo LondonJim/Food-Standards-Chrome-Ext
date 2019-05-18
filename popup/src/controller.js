@@ -1,22 +1,21 @@
 class Controller {
 
-  constructor (userLocation = new UserLocation()) {
-    this.userLocation = userLocation
-    this.restaurantData = []
-    this.userCoords = {}
+  constructor () {
+    this.establishmentData
   }
 
   execute() {
-    let establishments
-    this.userLocation.setLocation()
-      .then(function(result) {
-        console.log(result)
-        establishments = new Establishments(undefined, "Cafe Rose",
-                                            result.longitude, result.latitude)
-        return establishments.establishmentData()
-      })
-      .then(function(result) {
-        console.log(result.establishments)
-      })
+    chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
+    	if (!!message.name) {
+        console.log(message)
+        this.establishmentData = message
+
+      }
+    })
+
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            chrome.tabs.update(tabs[0].id, {url: tabs[0].url})
+    })
   }
+
 }
