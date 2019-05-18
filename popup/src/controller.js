@@ -9,7 +9,13 @@ class Controller {
     	if (!!message.name) {
         console.log(message)
         this.establishmentData = message
-
+        EstablishmentParse.parse(this.establishmentData)
+          .then(function(result) {
+            this.getEstablishmentData()
+              .then(function(result) {
+                DisplayResult.display(result.establishments)
+              })
+          })
       }
     })
 
@@ -18,4 +24,12 @@ class Controller {
     })
   }
 
+  getEstablishmentData = () => {
+    establishments = new Establishments(undefined, this.establishmentData.name,
+                                        this.establishmentData.longitude,
+                                        this.establishmentData.latitude,
+                                        this.establishmentData.address,
+                                        this.establishmentData.postcode)
+    return establishments.establishmentData()
+  }
 }
