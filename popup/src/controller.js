@@ -11,6 +11,7 @@ class Controller {
         this.establishmentData = message
         EstablishmentParse.parse(this.establishmentData)
           .then(function(result) {
+            this.establishmentData = result
             this.getEstablishmentData()
               .then(function(result) {
                 console.log(result)
