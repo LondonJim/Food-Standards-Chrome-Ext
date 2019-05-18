@@ -13,7 +13,7 @@ class Controller {
           .then(function(result) {
             this.getEstablishmentData()
               .then(function(result) {
-                DisplayResult.display(result.establishments)
+                console.log(result)
               })
           })
       }
