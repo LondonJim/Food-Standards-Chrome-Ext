@@ -4,20 +4,12 @@ class Controller {
     this.establishmentData
   }
 
-  execute() {
+  execute = () => {
+    let that = this
     chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
     	if (!!message.name) {
-        console.log(message)
-        this.establishmentData = message
-        establishmentParse = new EstablishmentParse(this.establishmentData)
-        establishmentParse.parse()
-          .then(function(result) {
-            this.establishmentData = result
-            this.getEstablishmentData()
-              .then(function(result) {
-                console.log(result)
-              })
-          })
+        that.establishmentData = message
+        that._parseEstablishmentData()
       }
     })
 
@@ -26,12 +18,8 @@ class Controller {
     })
   }
 
-  getEstablishmentData = () => {
-    establishments = new Establishments(undefined, this.establishmentData.name,
-                                        this.establishmentData.longitude,
-                                        this.establishmentData.latitude,
-                                        this.establishmentData.address,
-                                        this.establishmentData.postcode)
-    return establishments.establishmentData()
+  _parseEstablishmentData = () => {
+    let establishmentParse = new EstablishmentParse(this.establishmentData)
+    establishmentParse.parseWaves()
   }
 }

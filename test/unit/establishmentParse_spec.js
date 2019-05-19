@@ -16,7 +16,7 @@ describe('.EstablishmentParse', () => {
                        postcode: "TE3 TY1"}
       establishmentParse = new EstablishmentParse(mockData)
 
-      establishmentParse.parse().then(function (result) {
+      establishmentParse.parseWaves().then(function (result) {
         expect(result).toEqual({ name: "Test Name",
                                  latitude: 32,
                                  longitude: 92,
