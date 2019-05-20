@@ -9,7 +9,7 @@ class EstablishmentParse {
   // 5 checks on the food agency api with various iterations of the data, unless a result is recorded
   parseWaves = () => {
     let parseWave
-    let that = this
+    // let that = this
     if (this.wave === 1) {
       parseWave = this._parseOne
     } else if (this.wave === 2) {
@@ -21,6 +21,11 @@ class EstablishmentParse {
     } else if (this.wave === 5) {
       parseWave = this._parseFive
     }
+    this._sortParseWave(parseWave)
+  }
+
+  _sortParseWave = (parseWave) => {
+    let that = this
     parseWave()
       .then(function(result) {
         that._sendResult()

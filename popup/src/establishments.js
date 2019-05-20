@@ -28,7 +28,6 @@ class Establishments {
                + "&longitude=" + this.longitude
                + "&latitude=" + this.latitude
                + "&maxDistanceLimit=" + this.maxDistanceLimit
-    console.log(this.url)
   }
 
 }

@@ -16,7 +16,8 @@
     "node-fetch": "^2.5.0",
     "nyc": "^14.1.0",
     "puppeteer": "^1.15.0",
-    "rewire": "^4.0.1"
+    "rewire": "^4.0.1",
+    "sinon": "^7.3.2"
   },
   "scripts": {
     "test": "nyc babel-node test/unit/runTests.js && npx codeceptjs run --steps",
