@@ -13,7 +13,7 @@
     "fetch-mock": "^7.3.3",
     "jasmine": "^3.4.0",
     "jasmine-core": "^3.4.0",
-    "node-fetch": "^2.5.0",
+    "node-fetch": "^3.1.1",
     "nyc": "^14.1.0",
     "puppeteer": "^1.15.0",
     "rewire": "^4.0.1",
